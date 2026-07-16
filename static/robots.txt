@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skunkworks-academy.github.io/ls1607/sitemap.xml
