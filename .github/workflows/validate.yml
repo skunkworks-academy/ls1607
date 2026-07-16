@@ -20,9 +20,21 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        id: install
+        shell: bash
+        continue-on-error: true
+        run: npm install --no-audit --no-fund > npm-install.log 2>&1
+
+      - name: Upload install diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-install-log
+          path: npm-install.log
+          if-no-files-found: error
 
       - name: Validate required IDR content
+        if: steps.install.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -41,6 +53,7 @@ jobs:
           ! grep -R -q '493240070' src docs docusaurus.config.js
 
       - name: Build site
+        if: steps.install.outcome == 'success'
         id: build
         shell: bash
         continue-on-error: true
@@ -52,11 +65,16 @@ jobs:
         with:
           name: docusaurus-build-log
           path: docusaurus-build.log
-          if-no-files-found: error
+          if-no-files-found: ignore
 
-      - name: Report build result
+      - name: Report validation result
+        if: always()
         shell: bash
         run: |
+          if [ "${{ steps.install.outcome }}" != "success" ]; then
+            echo 'Dependency installation failed. Diagnostic log uploaded as npm-install-log.'
+            exit 1
+          fi
           if [ "${{ steps.build.outcome }}" != "success" ]; then
             echo 'Docusaurus build failed. Diagnostic log uploaded as docusaurus-build-log.'
             exit 1
