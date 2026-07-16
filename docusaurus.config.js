@@ -5,7 +5,7 @@ const darkLogo = 'https://raw.githubusercontent.com/skunkworks-academy/.github/r
 const config = {
   title: 'Luca Sprunt IDR',
   tagline: 'Cybersecurity foundations, systems operations and secure AI automation',
-  favicon: lightLogo,
+  favicon: 'img/favicon.svg',
   url: 'https://skunkworks-academy.github.io',
   baseUrl: '/ls1607/',
   organizationName: 'skunkworks-academy',
