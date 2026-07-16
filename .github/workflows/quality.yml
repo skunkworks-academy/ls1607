@@ -1,0 +1,74 @@
+name: Quality, UX and Lighthouse
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Static, privacy and UX validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate site structure and functionality
+        run: python scripts/check_site.py
+      - name: Validate inline JavaScript syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text(encoding='utf-8')
+          script=re.search(r'<script>([\s\S]*?)</script>',html)
+          Path('/tmp/app.js').write_text(script.group(1),encoding='utf-8')
+          PY
+          node --check /tmp/app.js
+      - name: Assemble tested site
+        run: |
+          mkdir -p _site/docs
+          cp index.html _site/index.html
+          cp docs/Luca_Sprunt_Individual_Development_Roadmap.docx _site/docs/
+          touch _site/.nojekyll
+
+  lighthouse-mobile:
+    name: Lighthouse mobile
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/docs
+          cp index.html _site/index.html
+          cp docs/Luca_Sprunt_Individual_Development_Roadmap.docx _site/docs/
+          touch _site/.nojekyll
+      - name: Run Lighthouse CI mobile
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.mobile.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  lighthouse-desktop:
+    name: Lighthouse desktop
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble static site
+        run: |
+          mkdir -p _site/docs
+          cp index.html _site/index.html
+          cp docs/Luca_Sprunt_Individual_Development_Roadmap.docx _site/docs/
+          touch _site/.nojekyll
+      - name: Run Lighthouse CI desktop
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.desktop.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
