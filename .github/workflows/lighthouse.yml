@@ -1,0 +1,39 @@
+name: Lighthouse quality audit
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse ${{ matrix.profile }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [mobile, desktop]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Validate and build production site
+        run: npm run check
+      - name: Mount GitHub Pages base path locally
+        run: |
+          mkdir -p lighthouse-root/ls1607
+          cp -a build/. lighthouse-root/ls1607/
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.${{ matrix.profile }}.json
+          uploadArtifacts: false
+          temporaryPublicStorage: false
