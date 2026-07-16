@@ -1,4 +1,4 @@
-name: Validate learner portal
+name: Validate Docusaurus IDR
 
 on:
   pull_request:
@@ -11,19 +11,54 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Validate required learner experience
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate required IDR content
         shell: bash
         run: |
           set -euo pipefail
-          test -s index.html
-          grep -q 'Welcome, <span>Luca.</span>' index.html
-          grep -q 'Download my IDR' index.html
-          grep -q 'id="radar"' index.html
-          grep -q 'Starter weekly timetable' index.html
-          grep -q '12-month roadmap workflow' index.html
-          grep -q 'Review and sign-off' index.html
-          grep -q 'Luca_Sprunt_Individual_Development_Roadmap.docx' index.html
-          ! grep -q 'lucasprunt@gmail.com' index.html
-          ! grep -q '493240070' index.html
-          echo 'Learner portal validation passed.'
+          test -s package.json
+          test -s docusaurus.config.js
+          test -s src/pages/index.jsx
+          test -s docs/intro.md
+          test -s docs/execution-roadmap.md
+          test -s docs/portfolio.md
+          test -s docs/secure-agent.md
+          grep -q 'Luca Sprunt' src/pages/index.jsx
+          grep -q 'Download editable IDR' src/pages/index.jsx
+          grep -q 'Luca_Sprunt_Individual_Development_Roadmap.docx' docusaurus.config.js
+          grep -q 'mermaid: true' docusaurus.config.js
+          ! grep -R -q 'lucasprunt@gmail.com' src docs docusaurus.config.js
+          ! grep -R -q '493240070' src docs docusaurus.config.js
+
+      - name: Build site
+        id: build
+        shell: bash
+        continue-on-error: true
+        run: npm run build > docusaurus-build.log 2>&1
+
+      - name: Upload build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docusaurus-build-log
+          path: docusaurus-build.log
+          if-no-files-found: error
+
+      - name: Report build result
+        shell: bash
+        run: |
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            echo 'Docusaurus build failed. Diagnostic log uploaded as docusaurus-build-log.'
+            exit 1
+          fi
+          tail -n 40 docusaurus-build.log
