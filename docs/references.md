@@ -48,7 +48,7 @@ Certification codes, exam availability and programme requirements can change. Th
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
-| Candidate | Luca Sprunt | Accept / Revise |  |
+| Candidate | Luca Sprunt | Accept | 17/07/2026 |
 | Mentor |  | Accept / Revise |  |
 | Career consultant |  | Accept / Revise |  |
 | Skunkworks Academy representative |  | Accept / Revise |  |
