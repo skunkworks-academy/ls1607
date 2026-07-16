@@ -1,4 +1,4 @@
-name: Deploy learner portal to GitHub Pages
+name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
@@ -18,28 +18,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Validate and assemble static site
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -s index.html
-          grep -q 'Welcome, <span>Luca.</span>' index.html
-          grep -q 'Download my IDR' index.html
-          mkdir -p _site
-          cp index.html _site/index.html
-          touch _site/.nojekyll
-      - uses: actions/upload-pages-artifact@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          path: _site
-          include-hidden-files: true
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build Docusaurus site
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
 
   deploy:
-    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
