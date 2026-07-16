@@ -27,7 +27,7 @@ jobs:
       - name: Assemble static site
         run: |
           mkdir -p _site/docs
-          cp index.html _site/index.html
+          cp index.html robots.txt sitemap.xml _site/
           cp docs/Luca_Sprunt_Individual_Development_Roadmap.docx _site/docs/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
