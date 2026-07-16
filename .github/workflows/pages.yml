@@ -19,16 +19,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate and assemble static site
-        shell: bash
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate learner portal
+        run: python scripts/check_site.py
+      - name: Assemble static site
         run: |
-          set -euo pipefail
-          test -s index.html
-          grep -q 'Welcome, <span>Luca.</span>' index.html
-          grep -q 'Download my IDR' index.html
-          mkdir -p _site
+          mkdir -p _site/docs
           cp index.html _site/index.html
+          cp docs/Luca_Sprunt_Individual_Development_Roadmap.docx _site/docs/
           touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
