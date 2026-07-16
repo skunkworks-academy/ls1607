@@ -23,28 +23,28 @@ const stages = [
     title: 'Technical Foundations',
     period: 'Months 1–3',
     copy: 'Linux, networking, Git/GitHub, command-line fluency and disciplined troubleshooting.',
-    link: '/roadmap/pathway#stage-1--technical-foundations',
+    link: '/roadmap/pathway',
   },
   {
     number: '02',
     title: 'Cybersecurity Foundations',
     period: 'Months 3–6',
     copy: 'Security principles, identity, endpoint defence, network protection and incident basics.',
-    link: '/roadmap/pathway#stage-2--cybersecurity-foundations',
+    link: '/roadmap/pathway',
   },
   {
     number: '03',
     title: 'Applied Security Operations',
     period: 'Months 6–9',
     copy: 'Log analysis, alert triage, hardening, reporting and evidence-led remediation.',
-    link: '/roadmap/pathway#stage-3--applied-security-operations',
+    link: '/roadmap/pathway',
   },
   {
     number: '04',
     title: 'Secure AI and Transition',
     period: 'Months 9–12',
     copy: 'Secure-agent engineering, ADF alignment, degree planning and career positioning.',
-    link: '/roadmap/pathway#stage-4--secure-ai-and-career-transition',
+    link: '/roadmap/pathway',
   },
 ];
 
@@ -188,7 +188,7 @@ export default function Home() {
             <h2>Begin with the first 30-day foundation sprint.</h2>
             <p>Create the project board, start the learning log, establish the mentor cadence and baseline the OpenClaw agent before expanding its permissions.</p>
           </div>
-          <Link className="button button--primary button--lg" to="/roadmap/execution-roadmap#first-30-days">
+          <Link className="button button--primary button--lg" to="/roadmap/execution-roadmap">
             Start the 30-day plan
           </Link>
         </section>
