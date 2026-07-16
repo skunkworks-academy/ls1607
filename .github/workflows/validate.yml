@@ -41,4 +41,12 @@ jobs:
           ! grep -R -q '493240070' src docs docusaurus.config.js
 
       - name: Build site
-        run: npm run build
+        shell: bash
+        run: |
+          set -o pipefail
+          if ! npm run build > docusaurus-build.log 2>&1; then
+            echo 'Docusaurus build failed. Showing the final diagnostic output:'
+            tail -n 180 docusaurus-build.log
+            exit 1
+          fi
+          tail -n 40 docusaurus-build.log
