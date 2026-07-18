@@ -7,6 +7,7 @@ const sidebars = {
     'execution-roadmap',
     'portfolio',
     'owasp-top-10-2025-content-sprint',
+    'github-achievements-academy',
     'secure-agent',
     'mentoring',
     'evidence',
