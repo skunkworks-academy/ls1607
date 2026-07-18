@@ -40,6 +40,23 @@ const firstSteps = [
   },
 ];
 
+const assignments = [
+  {
+    number: '01',
+    title: 'GitHub Achievements Academy',
+    copy: 'A short foundation task to practise legitimate GitHub workflows, capture evidence and reflect on what was learned.',
+    link: '/roadmap/github-achievements-academy',
+    action: 'Open foundation task',
+  },
+  {
+    number: '02',
+    title: 'OWASP Top 10 2025 Content Sprint',
+    copy: 'Create audience-specific security content, a presenter package and an incident-response runbook.',
+    link: '/roadmap/owasp-top-10-2025-content-sprint',
+    action: 'Open portfolio assignment',
+  },
+];
+
 const stages = [
   {
     number: '01',
@@ -159,6 +176,26 @@ export default function Home() {
                 <h3>{step.title}</h3>
                 <p>{step.copy}</p>
                 <strong>{step.action} →</strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="assignments-title">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.sectionKicker}>Active work</p>
+              <h2 id="assignments-title">Assigned tasks</h2>
+            </div>
+            <span className={styles.sectionHint}>Complete through GitHub issues and pull requests</span>
+          </div>
+          <div className={styles.quickStartGrid}>
+            {assignments.map((assignment) => (
+              <Link className={styles.quickStartCard} to={assignment.link} key={assignment.number}>
+                <span>{assignment.number}</span>
+                <h3>{assignment.title}</h3>
+                <p>{assignment.copy}</p>
+                <strong>{assignment.action} →</strong>
               </Link>
             ))}
           </div>

@@ -4,9 +4,10 @@ This directory contains practical assignments linked to Luca Sprunt's Individual
 
 ## Active assignments
 
-| Assignment | Assignee | Status | Tracking | Workspace |
-|---|---|---|---|---|
-| OWASP Top 10 2025 Content Sprint | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #13](https://github.com/skunkworks-academy/ls1607/issues/13) | [`owasp-top-10-2025-content-sprint/`](owasp-top-10-2025-content-sprint/) |
+| Assignment | Type | Assignee | Status | Tracking | Workspace |
+|---|---|---|---|---|---|
+| OWASP Top 10 2025 Content Sprint | Portfolio project | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #13](https://github.com/skunkworks-academy/ls1607/issues/13) | [`owasp-top-10-2025-content-sprint/`](owasp-top-10-2025-content-sprint/) |
+| GitHub Achievements Academy | Foundation task | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #15](https://github.com/skunkworks-academy/ls1607/issues/15) | [`github-achievements-academy/`](github-achievements-academy/) |
 
 ## Standard workflow
 
