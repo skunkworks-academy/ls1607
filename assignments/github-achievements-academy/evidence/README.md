@@ -21,7 +21,7 @@ Achievement awards are controlled by GitHub and may change. Record only achievem
 
 | Achievement | Profile evidence               | Date observed | Notes                                              |
 | ----------- | ------------------------------ | ------------- | -------------------------------------------------- |
-| Quickdraw   | https://github.com/Luca-Sprunt | 19/07/2026    | Wasn't sure if I was meant to fill this out - Luca |
+| Quickdraw   | https://github.com/Luca-Sprunt | 19/07/2026    | Wasn't sure if I was meant to fill this out -Luca |
 
 ## Skills demonstrated
 
