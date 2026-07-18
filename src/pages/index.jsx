@@ -55,6 +55,13 @@ const assignments = [
     link: '/roadmap/owasp-top-10-2025-content-sprint',
     action: 'Open portfolio assignment',
   },
+  {
+    number: '03',
+    title: 'Australian Telco API Vetting Lab',
+    copy: 'Research privacy, telecommunications law and API security, then build a mock-data vetting tool for telco developer APIs.',
+    link: '/roadmap/australian-telco-api-vetting-lab',
+    action: 'Open six-week project',
+  },
 ];
 
 const stages = [
@@ -277,6 +284,8 @@ export default function Home() {
             <article><span>02</span><h3>Home SOC Mini-Lab</h3><p>Centralised logs, alert triage, incident notes and reproducible detection evidence.</p></article>
             <article><span>03</span><h3>Network Security Baseline</h3><p>Documented topology, segmentation, hardening checklist and validation evidence.</p></article>
             <article><span>04</span><h3>Python Security Utility</h3><p>A small defensive automation tool with tests, safe defaults and a clear README.</p></article>
+            <article><span>05</span><h3>OWASP Top 10 Content Sprint</h3><p>Security communication, presentation and incident-response evidence for multiple audiences.</p></article>
+            <article><span>06</span><h3>Australian Telco API Vetting Lab</h3><p>Privacy research, API threat modelling and a mock-data security vetting tool.</p></article>
           </div>
         </section>
 
