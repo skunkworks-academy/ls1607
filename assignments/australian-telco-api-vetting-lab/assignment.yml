@@ -1,0 +1,29 @@
+id: australian-telco-api-privacy-security-vetting-lab
+name: Australian Telco API Privacy & Security Vetting Lab
+assignee: Luca-Sprunt
+status: assigned
+tracking_issue: 18
+mentor: Raydo
+duration_weeks: 6
+estimated_hours:
+  minimum: 30
+  maximum: 42
+deadline: null
+project_type: portfolio
+public_page: /roadmap/australian-telco-api-vetting-lab
+safety_boundary:
+  production_subscriber_data: prohibited
+  real_person_location_queries: prohibited
+  ownership_lookup: prohibited
+  unauthorised_testing: prohibited
+  sandbox_and_mock_data_only: true
+scoring:
+  legal_and_regulatory_research: 20
+  privacy_ethics_and_consent: 15
+  api_inventory_and_data_classification: 15
+  threat_model_and_architecture: 20
+  functional_mvp: 15
+  testing_and_evidence: 10
+  documentation_and_presentation: 5
+pass_mark: 70
+distinction_mark: 85
