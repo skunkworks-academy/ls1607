@@ -1,0 +1,19 @@
+id: portfolio-project-5-owasp-top-10-2025
+name: OWASP Top 10 2025 Content Sprint
+assignee: Luca-Sprunt
+status: assigned
+tracking_issue: 13
+mentor: Raydo
+deadline: null
+review_cycle:
+  - learner_self_review
+  - mentor_review
+  - pull_request_approval
+completion_gate:
+  required_deliverables: 9
+  require_sources: true
+  require_evidence_register: true
+  require_ci_pass: true
+  require_mentor_approval: true
+public_page: /roadmap/owasp-top-10-2025-content-sprint
+reference: https://owasp.org/Top10/2025/

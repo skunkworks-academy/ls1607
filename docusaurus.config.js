@@ -101,6 +101,12 @@ const config = {
         {to: '/roadmap/execution-roadmap', label: 'Timeline', position: 'left'},
         {to: '/roadmap/portfolio', label: 'Portfolio', position: 'left'},
         {
+          to: '/roadmap/owasp-top-10-2025-content-sprint',
+          label: 'Assigned Task',
+          position: 'left',
+          className: 'navbar-assignment-link',
+        },
+        {
           href: 'https://github.com/skunkworks-academy/ls1607',
           label: 'GitHub',
           position: 'right',
@@ -128,6 +134,7 @@ const config = {
           title: 'Evidence',
           items: [
             {label: 'Portfolio Projects', to: '/roadmap/portfolio'},
+            {label: 'OWASP Assigned Task', to: '/roadmap/owasp-top-10-2025-content-sprint'},
             {label: 'Evidence Register', to: '/roadmap/evidence'},
             {label: 'Mentor Reviews', to: '/roadmap/mentoring'},
           ],
