@@ -2,7 +2,7 @@
 id: portfolio
 title: Portfolio Projects
 sidebar_label: Portfolio Projects
-description: Luca's four practical portfolio projects, deliverables and acceptance criteria.
+description: Luca's practical portfolio projects, deliverables and acceptance criteria.
 ---
 
 # Portfolio Projects
@@ -125,6 +125,42 @@ By the annual review Luca should have:
 - Inputs are validated
 - Errors are handled without exposing sensitive data
 - At least one peer or mentor review is recorded
+
+## Project 5 — OWASP Top 10 2025 Content Sprint
+
+**Status:** Assigned to [Luca Sprunt](https://github.com/Luca-Sprunt)  
+**Tracking:** [GitHub issue #13](https://github.com/skunkworks-academy/ls1607/issues/13)  
+**Specification:** [Open the learner-facing assignment page](./owasp-top-10-2025-content-sprint)
+
+**Purpose:** Convert application-security research into audience-specific content, a presenter package, an incident-response runbook and reviewable GitHub portfolio evidence.
+
+### Deliverables
+
+- Skunkworks Academy learner article
+- Skunkworks Africa business-impact article
+- Skunkworks Insights newsletter article
+- LinkedIn thought-leadership article
+- Customer email awareness campaign
+- Presenter script and slide outline
+- Web application incident-response runbook
+- Evidence register with sources, commits, reviews and publication links
+
+### Acceptance criteria
+
+- OWASP risks are explained accurately and in clear language
+- Technical risk is connected to business and operational impact
+- Content is adapted for learner, executive and practitioner audiences
+- The runbook covers preparation, identification, containment, eradication, recovery and lessons learned
+- Examples are authorised, defensive and non-destructive
+- No secrets, personal data or identifying infrastructure details are published
+- Primary sources are cited
+- The final pull request passes validation and receives mentor approval
+
+### Assignment workspace
+
+The repository contains a ready-to-complete directory at:
+
+[`assignments/owasp-top-10-2025-content-sprint/`](https://github.com/skunkworks-academy/ls1607/tree/main/assignments/owasp-top-10-2025-content-sprint)
 
 ## Recommended repository structure
 
