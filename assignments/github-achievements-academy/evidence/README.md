@@ -7,21 +7,21 @@ Use this register to record legitimate public evidence from the learning activit
 
 ## Activity evidence
 
-| Activity | Public evidence link | What it demonstrates | Status |
-|---|---|---|---|
-| External resource reviewed | https://github.com/Puliczek/github-achievements-academy | Resource navigation and task initiation | Pending |
-| Issue or planning activity | | Issue-based task management | Pending |
-| Branch and commit activity | | Version-control workflow | Pending |
-| Pull request activity | | Review and collaboration workflow | Pending |
-| Profile achievement evidence | | GitHub profile outcome, where awarded | Optional |
+| Activity                     | Public evidence link                                                                                 | What it demonstrates                    | Status   |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------- | -------- |
+| External resource reviewed   | https://github.com/Puliczek/github-achievements-academy                                              | Resource navigation and task initiation | Pending  |
+| Issue or planning activity   | https://github.com/Puliczek/github-achievements-academy/issues/8615                                  | Issue-based task management             | Pending  |
+| Branch and commit activity   | https://github.com/Luca-Sprunt/MyTestProject/pull/2/changes/1858075591b7165a652494351f7dce734dd12da9 | Version-control workflow                | Pending  |
+| Pull request activity        | https://github.com/Luca-Sprunt/MyTestProject/pull/2                                                  | Review and collaboration workflow       | Pending  |
+| Profile achievement evidence |                                                                                                      | GitHub profile outcome, where awarded   | Optional |
 
 ## Achievement record
 
 Achievement awards are controlled by GitHub and may change. Record only achievements that visibly appear on Luca's profile after legitimate activity.
 
-| Achievement | Profile evidence | Date observed | Notes |
-|---|---|---|---|
-| | | | |
+| Achievement | Profile evidence               | Date observed | Notes                                              |
+| ----------- | ------------------------------ | ------------- | -------------------------------------------------- |
+| Quickdraw   | https://github.com/Luca-Sprunt | 19/07/2026    | Wasn't sure if I was meant to fill this out - Luca |
 
 ## Skills demonstrated
 
