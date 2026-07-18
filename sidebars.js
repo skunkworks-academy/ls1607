@@ -8,6 +8,7 @@ const sidebars = {
     'portfolio',
     'owasp-top-10-2025-content-sprint',
     'github-achievements-academy',
+    'australian-telco-api-vetting-lab',
     'secure-agent',
     'mentoring',
     'evidence',

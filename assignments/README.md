@@ -8,6 +8,7 @@ This directory contains practical assignments linked to Luca Sprunt's Individual
 |---|---|---|---|---|---|
 | OWASP Top 10 2025 Content Sprint | Portfolio project | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #13](https://github.com/skunkworks-academy/ls1607/issues/13) | [`owasp-top-10-2025-content-sprint/`](owasp-top-10-2025-content-sprint/) |
 | GitHub Achievements Academy | Foundation task | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #15](https://github.com/skunkworks-academy/ls1607/issues/15) | [`github-achievements-academy/`](github-achievements-academy/) |
+| Australian Telco API Privacy & Security Vetting Lab | Portfolio project | [@Luca-Sprunt](https://github.com/Luca-Sprunt) | Assigned | [Issue #18](https://github.com/skunkworks-academy/ls1607/issues/18) | [`australian-telco-api-vetting-lab/`](australian-telco-api-vetting-lab/) |
 
 ## Standard workflow
 

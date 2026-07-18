@@ -114,6 +114,10 @@ const config = {
               to: '/roadmap/github-achievements-academy',
               label: 'GitHub Achievements Academy',
             },
+            {
+              to: '/roadmap/australian-telco-api-vetting-lab',
+              label: 'Australian Telco API Vetting Lab',
+            },
           ],
         },
         {
@@ -146,6 +150,7 @@ const config = {
             {label: 'Portfolio Projects', to: '/roadmap/portfolio'},
             {label: 'OWASP Content Sprint', to: '/roadmap/owasp-top-10-2025-content-sprint'},
             {label: 'GitHub Achievements Academy', to: '/roadmap/github-achievements-academy'},
+            {label: 'Telco API Vetting Lab', to: '/roadmap/australian-telco-api-vetting-lab'},
             {label: 'Evidence Register', to: '/roadmap/evidence'},
             {label: 'Mentor Reviews', to: '/roadmap/mentoring'},
           ],

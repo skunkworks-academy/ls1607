@@ -158,9 +158,45 @@ By the annual review Luca should have:
 
 ### Assignment workspace
 
-The repository contains a ready-to-complete directory at:
-
 [`assignments/owasp-top-10-2025-content-sprint/`](https://github.com/skunkworks-academy/ls1607/tree/main/assignments/owasp-top-10-2025-content-sprint)
+
+## Project 6 — Australian Telco API Privacy & Security Vetting Lab
+
+**Status:** Assigned to [Luca Sprunt](https://github.com/Luca-Sprunt)  
+**Tracking:** [GitHub issue #18](https://github.com/skunkworks-academy/ls1607/issues/18)  
+**Duration:** 6 weeks, 30–42 hours  
+**Specification:** [Open the learner-facing project page](./australian-telco-api-vetting-lab)
+
+**Purpose:** Research Australian telecommunications privacy, API governance and ethical-use requirements, then build a local-first vetting tool that assesses public API specifications and mock metadata without accessing real subscriber data.
+
+### Deliverables
+
+- Australian legal and standards matrix
+- Developer-portal and API inventory
+- Data classification and consent model
+- Privacy impact assessment
+- Threat model and abuse-case register
+- Secure architecture and data-flow diagram
+- Functional API vetting MVP
+- Automated mock-data tests
+- Final privacy and security report
+- Evidence register and mentor demonstration
+
+### Acceptance criteria
+
+- Mandatory law, regulatory guidance, contractual terms and voluntary standards are distinguished
+- API data is classified by sensitivity and potential harm
+- Consent, purpose, retention, deletion and disclosure are addressed
+- Threats are mapped to OWASP API Security Top 10 and defensive controls
+- The MVP processes documentation, OpenAPI files and mock metadata only
+- No real subscriber, ownership, identity or precise-location data is used
+- No unauthorised testing or portal-control bypass occurs
+- Findings are explainable and do not claim legal certification
+- The project scores at least 70/100 and passes the critical safety gate
+
+### Assignment workspace
+
+[`assignments/australian-telco-api-vetting-lab/`](https://github.com/skunkworks-academy/ls1607/tree/main/assignments/australian-telco-api-vetting-lab)
 
 ## Recommended repository structure
 
