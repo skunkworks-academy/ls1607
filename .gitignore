@@ -8,3 +8,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .DS_Store
+scripts/raydio/.venv/
+scripts/raydio/__pycache__/

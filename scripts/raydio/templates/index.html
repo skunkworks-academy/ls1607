@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keysmith — Password Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='keysmith.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <header class="head">
+      <div class="brand">Key<em>smith</em></div>
+      <div class="sub">randomness from Python's <code>secrets</code> engine — generated on your machine</div>
+    </header>
+
+    <div class="modes" role="tablist" aria-label="Generator mode">
+      <button class="mode on" data-mode="password" role="tab" aria-selected="true">Password</button>
+      <button class="mode" data-mode="passphrase" role="tab" aria-selected="false">Passphrase</button>
+      <button class="mode" data-mode="pin" role="tab" aria-selected="false">PIN</button>
+    </div>
+
+    <div class="grid">
+      <!-- ================= controls ================= -->
+      <section class="card">
+        <h2>Settings</h2>
+
+        <div class="panel" id="panel-password">
+          <div class="field">
+            <div class="label"><span>Length</span><b id="length-value">18</b></div>
+            <input type="range" id="length" class="range" min="8" max="64" value="18" aria-label="Password length">
+          </div>
+          <button class="toggle on" data-flag="lower" aria-pressed="true">
+            <span class="pip"></span><span><span class="t-label">Lowercase letters</span><span class="t-hint">a–z</span></span>
+          </button>
+          <button class="toggle on" data-flag="upper" aria-pressed="true">
+            <span class="pip"></span><span><span class="t-label">Uppercase letters</span><span class="t-hint">A–Z</span></span>
+          </button>
+          <button class="toggle on" data-flag="digit" aria-pressed="true">
+            <span class="pip"></span><span><span class="t-label">Digits</span><span class="t-hint">0–9</span></span>
+          </button>
+          <button class="toggle on" data-flag="symbol" aria-pressed="true">
+            <span class="pip"></span><span><span class="t-label">Symbols</span><span class="t-hint">!@#$%^&amp;*…</span></span>
+          </button>
+          <button class="toggle" data-flag="ambiguous" aria-pressed="false">
+            <span class="pip"></span><span><span class="t-label">Allow look-alikes</span><span class="t-hint">I, l, 1, O, 0 — turn off if you'll ever type it by hand</span></span>
+          </button>
+        </div>
+
+        <div class="panel hidden" id="panel-passphrase">
+          <div class="field">
+            <div class="label"><span>Words</span><b id="words-value">4</b></div>
+            <input type="range" id="words" class="range" min="3" max="10" value="4" aria-label="Number of words">
+          </div>
+          <div class="field">
+            <div class="label"><span>Separator</span></div>
+            <div class="seps">
+              <button class="sep on" data-sep="-">-</button>
+              <button class="sep" data-sep=".">.</button>
+              <button class="sep" data-sep="_">_</button>
+              <button class="sep" data-sep=" ">space</button>
+            </div>
+          </div>
+          <button class="toggle on" data-flag="capitalize" aria-pressed="true">
+            <span class="pip"></span><span><span class="t-label">Capitalize each word</span><span class="t-hint">Maple-River → satisfies uppercase rules</span></span>
+          </button>
+          <button class="toggle" data-flag="addNumber" aria-pressed="false">
+            <span class="pip"></span><span><span class="t-label">Append a number</span><span class="t-hint">For sites that require a digit</span></span>
+          </button>
+        </div>
+
+        <div class="panel hidden" id="panel-pin">
+          <div class="field">
+            <div class="label"><span>Digits</span><b id="pin-value">6</b></div>
+            <input type="range" id="pin" class="range" min="4" max="16" value="6" aria-label="PIN length">
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= output ================= -->
+      <section class="output">
+        <div class="card">
+          <h2 id="output-title">Your password</h2>
+
+          <div class="display" id="display" aria-live="polite"></div>
+
+          <div class="legend" id="legend">
+            <span><span class="dot" style="background:var(--lo)"></span>lowercase</span>
+            <span><span class="dot" style="background:var(--up)"></span>uppercase</span>
+            <span><span class="dot" style="background:var(--di)"></span>digit</span>
+            <span><span class="dot" style="background:var(--sy)"></span>symbol</span>
+          </div>
+
+          <div class="meter" id="meter">
+            <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+            <div class="meter-row">
+              <span id="strength-label"></span>
+              <span id="entropy-label"></span>
+            </div>
+            <div class="crack">A fast offline attack would need <b id="crack-label"></b> to guess it.</div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" id="copy-btn">Copy</button>
+            <button class="btn" id="regen-btn">Generate again</button>
+          </div>
+        </div>
+
+        <div class="card hist hidden" id="hist-card">
+          <h2>Earlier this session</h2>
+          <div id="hist-list"></div>
+          <div class="note">History lives only in this tab and disappears when you close it.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='keysmith.js') }}"></script>
+</body>
+</html>
+
