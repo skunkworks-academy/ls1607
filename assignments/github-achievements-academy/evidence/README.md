@@ -31,7 +31,7 @@ Achievement awards are controlled by GitHub and may change. Record only achievem
 - [ ] Used a branch and meaningful commits
 - [ ] Opened a pull request
 - [ ] Responded to review feedback
-- [ ] Recorded safe, public portfolio evidence
+- [ ] Recorded safe, public portfolio evidence 
 
 ## Integrity check
 
