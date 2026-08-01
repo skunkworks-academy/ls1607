@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPForge — Binary / IPv4 / IPv6 Converter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1512;
+    --panel: #121b17;
+    --panel-line: #22322b;
+    --paper: #e9efe9;
+    --dim: #7c9186;
+    --signal: #5eff9c;
+    --signal-dim: #2c6b48;
+    --warn: #ff8a5e;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--panel-line);
+    padding-bottom: 24px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .sub {
+    color: var(--dim);
+    font-size: 14px;
+    margin: 0;
+    max-width: 50ch;
+    line-height: 1.5;
+  }
+
+  form {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 4px;
+    padding: 28px;
+  }
+
+  .row { display: flex; gap: 16px; margin-bottom: 20px; }
+  .field { flex: 1; }
+
+  label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  select, input[type="text"] {
+    width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--panel-line);
+    color: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  select:focus, input[type="text"]:focus { border-color: var(--signal); }
+  input[type="text"]::placeholder { color: #4a5c52; }
+
+  button.primary {
+    width: 100%;
+    background: var(--signal);
+    color: var(--ink);
+    border: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+
+  button.primary:hover { opacity: 0.85; }
+  button:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
+
+  .error, .note {
+    margin-top: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    padding: 12px 14px;
+    border-radius: 3px;
+  }
+
+  .error {
+    border: 1px solid var(--warn);
+    background: rgba(255, 138, 94, 0.08);
+    color: var(--warn);
+  }
+
+  .note {
+    border: 1px solid var(--signal-dim);
+    background: rgba(94, 255, 156, 0.06);
+    color: var(--dim);
+  }
+
+  .result-panel {
+    margin-top: 32px;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 4px;
+    padding: 28px;
+  }
+
+  .result-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin: 0 0 10px;
+  }
+
+  .result-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 24px;
+  }
+
+  .result-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--signal);
+    word-break: break-all;
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+
+  .copy-btn {
+    flex-shrink: 0;
+    background: var(--ink);
+    border: 1px solid var(--panel-line);
+    color: var(--dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .copy-btn:hover { border-color: var(--signal); color: var(--signal); }
+  .copy-btn.copied { border-color: var(--signal); color: var(--signal); }
+
+  .breakdown-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin: 0 0 14px;
+  }
+
+  .octet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+    gap: 10px;
+  }
+
+  .octet-card {
+    border: 1px solid var(--panel-line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .octet-card.group-end { border-right: 2px solid var(--signal-dim); }
+
+  .octet-card .octet-total {
+    background: var(--panel-line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--signal);
+    padding: 8px 10px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .bit-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--dim);
+  }
+
+  .bit-row.on { color: var(--paper); background: rgba(94, 255, 156, 0.06); }
+  .bit-row .bit { color: var(--signal-dim); }
+  .bit-row.on .bit { color: var(--signal); }
+
+  footer {
+    margin-top: 40px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--dim);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Address Conversion Toolkit</p>
+    <h1>IPForge</h1>
+    <p class="sub">Convert between binary, IPv4, and IPv6 — with the full bit-weight breakdown behind every result.</p>
+  </header>
+
+  <form method="POST" action="/">
+    <div class="row">
+      <div class="field">
+        <label for="input_type">Input format</label>
+        <select name="input_type" id="input_type">
+          {% for key, display in formats.items() %}
+          <option value="{{ key }}" {% if input_type == key %}selected{% endif %}>{{ display }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label for="output_type">Output format</label>
+        <select name="output_type" id="output_type">
+          {% for key, display in formats.items() %}
+          <option value="{{ key }}" {% if output_type == key %}selected{% endif %}>{{ display }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom: 20px;">
+      <label for="input_value">Value</label>
+      <input
+        type="text"
+        name="input_value"
+        id="input_value"
+        placeholder="e.g. 15.235.170.85, 00001111.11101011.10101010.01010101, or 2001:db8::1"
+        value="{{ input_value }}"
+        autocomplete="off"
+        spellcheck="false"
+      >
+    </div>
+
+    <button type="submit" class="primary">Convert</button>
+
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  </form>
+
+  {% if result %}
+  <div class="result-panel">
+    <p class="result-label">Result</p>
+    <div class="result-row">
+      <p class="result-value" id="result-text">{{ result }}</p>
+      <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+    </div>
+
+    {% if note %}<div class="note">{{ note }}</div>{% endif %}
+
+    {% if chunks %}
+    <p class="breakdown-title">Bit weight breakdown</p>
+    <div class="octet-grid">
+      {% for chunk in chunks %}
+      <div class="octet-card {% if chunk.group_end %}group-end{% endif %}">
+        <div class="octet-total">{{ chunk.label }}</div>
+        {% for row in chunk.rows %}
+        <div class="bit-row {% if row.bit == 1 %}on{% endif %}">
+          <span class="bit">{{ row.weight }}</span>
+          <span>{{ row.bit }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <footer>binary · IPv4 · IPv6 — standard bit weighting, left to right</footer>
+</div>
+
+<script>
+  const copyBtn = document.getElementById('copy-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const text = document.getElementById('result-text').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Copied';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy';
+          copyBtn.classList.remove('copied');
+        }, 1500);
+      } catch (err) {
+        copyBtn.textContent = 'Failed';
+      }
+    });
+  }
+</script>
+</body>
+</html>
