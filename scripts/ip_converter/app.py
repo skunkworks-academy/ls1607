@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -286,4 +288,8 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    # Debug mode is a security risk in production (remote code execution via the
+    # Werkzeug debugger). Only enable it when explicitly running locally for dev.
+    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=debug_mode, host="0.0.0.0", port=port)
