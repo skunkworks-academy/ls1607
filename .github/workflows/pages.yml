@@ -77,6 +77,10 @@ jobs:
           test -s build/sitemap.xml
           grep -q 'academy-navigation.js?v=2026.08.15.1' build/index.html
           grep -q 'data-skunkworks-global-nav="v10"' build/index.html
+      - name: Install and verify Academy search favicons
+        uses: skunkworks-academy/www/.github/actions/search-favicons@070f621875577a66ae43cdffa7e9d20c65efdc71
+        with:
+          artifact-path: "build"
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
