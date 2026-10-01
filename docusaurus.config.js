@@ -4,7 +4,7 @@ const localLogo = 'img/favicon.svg';
 const config = {
   title: 'Luca Sprunt IDR',
   tagline: 'Cybersecurity foundations, systems operations and secure AI automation',
-  favicon: localLogo,
+  favicon: 'images/favicon-search.png',
   url: 'https://skunkworks-academy.github.io',
   baseUrl: '/ls1607/',
   organizationName: 'skunkworks-academy',
